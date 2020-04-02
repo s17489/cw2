@@ -9,7 +9,7 @@ namespace cw2.Controllers
     [ApiController]
     // jeśli pod ten adres wysylane jest rzadanie to przekaz je co studentsC
     [Route("api/students")]
-    
+
     //adnotacja
     public class StudentsController : ControllerBase
     {
@@ -22,16 +22,18 @@ namespace cw2.Controllers
          * HttpDelete -> usuń zasób
          */
 
-            [HttpGet]
-            //jeśli samo HttpGet  - rzadanie ktore przyjdzie na glowny adres kontrolera to przejdzie do tej metody, przez to mozna uzyc tylko dla jednej metody
-        public string GetStudents()
+        [HttpGet]
+        //jeśli samo HttpGet  - rzadanie ktore przyjdzie na glowny adres kontrolera to przejdzie do tej metody, przez to mozna uzyc tylko dla jednej metody
+        public string GetStudents([FromQuery] string orderBy)
+        //from query nie jest wymagane
         {
-            return "Kowalski, Malewski, Andrzejweski";
+            return $"Kowalski, Malewski, Andrzejweski sorotowanie= {orderBy}";
         }
 
         [HttpGet("{id}")]
         // jeśli po /students/ pojawi sie jakas wartosc to zostanie ona tutaj przekazana 
-        public IActionResult GetStudentById(int id )
+        public IActionResult GetStudentById( int id )
+        // [FromRoute] to mozna dodac przed intem ale nie jest wymagane 
         {
             if (id == 1)
             {
