@@ -14,6 +14,8 @@ namespace cw2
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            //klasa uruchomieniowa 
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -21,6 +23,7 @@ namespace cw2
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
                 });
     }
 }
