@@ -15,11 +15,11 @@ namespace cw2.Controllers
     {
         //Nad metodą dajemy atrybut na jaka metode http bedzie regaowalem ten atrybut 
         /*
-         * HttpGet
-         * HttpPost
-         * HttpPut
-         * HttpPatch
-         * HttpDelete
+         * HttpGet -> Pobierz z BD
+         * HttpPost - > Dodaj zasób do BD
+         * HttpPut ->  Zakutalizuj zasób
+         * HttpPatch -> załataj (częściowa aktualizacja)
+         * HttpDelete -> usuń zasób
          */
 
             [HttpGet]
@@ -27,6 +27,21 @@ namespace cw2.Controllers
         public string GetStudents()
         {
             return "Kowalski, Malewski, Andrzejweski";
+        }
+
+        [HttpGet("{id}")]
+        // jeśli po /students/ pojawi sie jakas wartosc to zostanie ona tutaj przekazana 
+        public IActionResult GetStudentById(int id )
+        {
+            if (id == 1)
+            {
+                return Ok("Kowalski");
+            }
+            else if (id == 2)
+            {
+                return Ok("Malewski");
+            }
+            return NotFound($"Nie znalezeiono studenta od id {id}");
         }
     }
 }
