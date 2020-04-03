@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.SqlClient;
+using cw2.Models;
+
 
 namespace cw2.Controllers
 {
@@ -13,6 +16,10 @@ namespace cw2.Controllers
     //adnotacja
     public class StudentsController : ControllerBase
     {
+
+        private readonly StudentDbInterface studentsDB = new StudentDbService();
+
+       
         //Nad metodą dajemy atrybut na jaka metode http bedzie regaowalem ten atrybut 
         /*
          * HttpGet -> Pobierz z BD
@@ -24,10 +31,13 @@ namespace cw2.Controllers
 
         [HttpGet]
         //jeśli samo HttpGet  - rzadanie ktore przyjdzie na glowny adres kontrolera to przejdzie do tej metody, przez to mozna uzyc tylko dla jednej metody
-        public string GetStudents([FromQuery] string orderBy)
+        //public string GetStudents([FromQuery] string orderBy)
+        public IActionResult GetStudents()
+        
         //from query nie jest wymagane
         {
-            return $"Kowalski, Malewski, Andrzejweski sorotowanie= {orderBy}";
+            List<Student> list = studentsDB.getStudentsFromDb();
+            return Ok(list);
         }
         //dodawanie zasobou 
         //pracuje sie albo na xml albo na json
@@ -70,5 +80,14 @@ namespace cw2.Controllers
             //usuwanie zasobu z BD
             return Ok($"Usuwanie studenta o id {id} ukończone");
         }
+
+        [HttpGet("getSemestr/{id}")]
+        public IActionResult GetSemestrByIndex(string id)
+            // id to innaczej nr indexu bo w tej bazie nie ma odzielnego idStudent 
+        {
+            int sem = studentsDB.getSemestr(id);
+            return Ok($"Student o numerze {id} uzyskal wpis na semestr {sem}");
+        }
+        
     }
 }
