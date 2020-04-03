@@ -29,6 +29,16 @@ namespace cw2.Controllers
         {
             return $"Kowalski, Malewski, Andrzejweski sorotowanie= {orderBy}";
         }
+        //dodawanie zasobou 
+        //pracuje sie albo na xml albo na json
+        [HttpPost]
+        public IActionResult AddStudent([FromBody] Models.Student student)
+        {
+            //.. add to DB
+            //... generating index number
+            student.IndexNumber = $"s{new Random().Next(1, 20000)}";
+            return Ok(student);
+        }
 
         [HttpGet("{id}")]
         // jeśli po /students/ pojawi sie jakas wartosc to zostanie ona tutaj przekazana 
