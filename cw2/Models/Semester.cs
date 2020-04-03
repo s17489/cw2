@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace cw2.Models
 {
-    interface StudentDbInterface
+    public class Semester
     {
-        List<Student> getStudentsFromDb();
-        Semester getSemester(string id);
+        public int SemesterNum { get; set; }
     }
 }

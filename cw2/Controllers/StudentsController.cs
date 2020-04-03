@@ -81,12 +81,12 @@ namespace cw2.Controllers
             return Ok($"Usuwanie studenta o id {id} ukończone");
         }
 
-        [HttpGet("getSemestr/{id}")]
+        [HttpGet("getSemester/{id}")]
         public IActionResult GetSemestrByIndex(string id)
             // id to innaczej nr indexu bo w tej bazie nie ma odzielnego idStudent 
         {
-            int sem = studentsDB.getSemestr(id);
-            return Ok($"Student o numerze {id} uzyskal wpis na semestr {sem}");
+            Semester sem = studentsDB.getSemester(id);
+            return Ok(sem);
         }
         
     }

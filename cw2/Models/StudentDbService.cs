@@ -34,9 +34,10 @@ namespace cw2.Models
             }
             return StudentsList;
         }
-        public int getSemestr(string id)
+        // public int getSemestr(string id)
+        public Semester getSemester(string id)
         {
-            var Semestr = 0;
+            var sem = new Semester();
             using (var client = new SqlConnection(SqlConn))
             using (var command = new SqlCommand())
             {
@@ -44,14 +45,14 @@ namespace cw2.Models
                 command.CommandText = "SELECT Enrollment.Semester FROM Enrollment JOIN Student ON Enrollment.IdEnrollment = Student.IdEnrollment WHERE Student.IndexNumber = @id;";
                 command.Parameters.AddWithValue("@id", id);
                 client.Open();
-                var dr = command.ExecuteReader();
+                var dr = command.ExecuteReader(); 
                 while (dr.Read())
-                {
-                    Semestr = (int)dr["Semester"];
+                {      
+                    sem.SemesterNum = (int)dr["Semester"];  
                 }
                 client.Close();
             }
-            return Semestr;
+            return sem;
         }
     }
 }
