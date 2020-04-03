@@ -55,5 +55,20 @@ namespace cw2.Controllers
             }
             return NotFound($"Nie znalezeiono studenta od id {id}");
         }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateStudent(int id)
+        {
+           //aktualizaccja BD
+            return Ok($"Aktualizacja studenta o id {id} dokończona");
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult Deletetudent(int id)
+        {
+            //usuwanie zasobu z BD
+            return Ok($"Usuwanie studenta o id {id} ukończone");
+        }
     }
 }
