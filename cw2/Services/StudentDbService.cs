@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 namespace cw2.Models
 {
-    public class StudentDbService : StudentDbInterface
+    public class StudentDbService : IStudentDbInterface
     {
         private string SqlConn = "Data Source=db-mssql;Initial Catalog=s17489;Integrated Security=True";
 
@@ -53,6 +53,30 @@ namespace cw2.Models
                 client.Close();
             }
             return sem;
+        }
+
+        public bool trueStudent(string indexNumber)
+        {
+           
+            using (SqlConnection con = new SqlConnection(SqlConn))
+            using (SqlCommand com = new SqlCommand())
+            {
+                com.Connection = con;
+                com.CommandText = "select FirstName from Student where IndexNumber=@index";
+                com.Parameters.AddWithValue("index", indexNumber);
+                con.Open();
+                SqlDataReader dr = com.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+
+            }
         }
     }
 }

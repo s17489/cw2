@@ -17,7 +17,7 @@ namespace cw2.Controllers
     public class StudentsController : ControllerBase
     {
 
-        private readonly StudentDbInterface studentsDB = new StudentDbService();
+        private readonly IStudentDbInterface studentsDB = new StudentDbService();
 
        
         //Nad metodą dajemy atrybut na jaka metode http bedzie regaowalem ten atrybut 
