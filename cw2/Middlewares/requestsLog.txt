@@ -1,156 +1,45 @@
-﻿METHOD: GET
-QUERY: 
+﻿
+METHOD: GET
+PATH: /
 BODY: 
+QUERY: 
 
 METHOD: GET
-QUERY: 
+PATH: /favicon.ico
 BODY: 
+QUERY: 
 
-METHOD: GET
-QUERY: 
+METHOD: POST
+PATH: /api/enrollments%20
 BODY: 
+{
+"IndexNumber": "s1234",
+"FirstName": "Andrzej",
+"LastName": "Malewski",
+"BirthDate": "30.03.1993",
+"Studies": "IT"
+}
+QUERY: ?kasznaka=22131
 
-METHOD: GET
+METHOD: POST
+PATH: /api/enrollments
+BODY: {
+"IndexNumber": "s589217",
+"FirstName": "Mateusz",
+"LastName": "Baranowicz",
+"BirthDate": "05.08.1992",
+"Studies": "Informatyka"
+}
 QUERY: 
-BODY: 
 
-METHOD: GET
+METHOD: POST
+PATH: /api/enrollments
+BODY: {
+"IndexNumber": "s589217",
+"FirstName": "Mateusz",
+"LastName": "Baranowicz",
+"BirthDate": "05.08.1992",
+"Studies": "Informatyka"
+}
 QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
-
-METHOD: GET
-QUERY: 
-BODY: 
 

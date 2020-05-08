@@ -29,22 +29,24 @@ namespace cw2.Middlewares
             if (httpContext.Request != null)
             {
                 string path = httpContext.Request.Path;
-                string queryString = httpContext.Request.QueryString.ToString();
                 string method = httpContext.Request.Method.ToString();
+                string queryString = httpContext.Request.QueryString.ToString();
                 string bodyStr = "";
 
                 using (StreamReader reader
                  = new StreamReader(httpContext.Request.Body, Encoding.UTF8, true, 1024, true))
                 {
                     bodyStr = await reader.ReadToEndAsync();
+                    reader.Close();
                     httpContext.Request.Body.Position = 0;
                 }
 
                 using (StreamWriter writer = File.AppendText(filePath))
                 {
                     writer.WriteLine("METHOD: " + method);
-                    writer.WriteLine("QUERY: " + queryString);
+                    writer.WriteLine("PATH: " + path);
                     writer.WriteLine("BODY: " + bodyStr);
+                    writer.WriteLine("QUERY: " + queryString);
                     writer.WriteLine();
                 }
             }
