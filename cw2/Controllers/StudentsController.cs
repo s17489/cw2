@@ -12,12 +12,12 @@ namespace cw2.Controllers
     [ApiController]
     // jeśli pod ten adres wysylane jest rzadanie to przekaz je co studentsC
     [Route("api/students")]
-
+   
     //adnotacja
     public class StudentsController : ControllerBase
     {
 
-        private readonly StudentDbInterface studentsDB = new StudentDbService();
+        private readonly IStudentDbInterface studentsDB = new StudentDbService();
 
        
         //Nad metodą dajemy atrybut na jaka metode http bedzie regaowalem ten atrybut 

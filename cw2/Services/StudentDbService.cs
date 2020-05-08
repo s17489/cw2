@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 namespace cw2.Models
 {
-    public class StudentDbService : StudentDbInterface
+    public class StudentDbService : IStudentDbInterface
     {
-        private string SqlConn = " Data Source=db-mssql;Initial Catalog=s17489;Integrated Security=True";
+        private string SqlConn = "Data Source=db-mssql;Initial Catalog=s17489;Integrated Security=True";
 
         public List<Student> getStudentsFromDb()
         {
@@ -26,7 +26,7 @@ namespace cw2.Models
                     st.LastName = dr["LastName"].ToString();
                     st.IndexNumber = dr["IndexNumber"].ToString();
                     st.BirthDate = dr["BirthDate"].ToString();
-                    st.IdEnrollment = (int)dr["IdEnrollment"];
+                   // st.IdEnrollment = (int)dr["IdEnrollment"];
                     StudentsList.Add(st);
 
                 }
@@ -53,6 +53,30 @@ namespace cw2.Models
                 client.Close();
             }
             return sem;
+        }
+
+        public bool trueStudent(string indexNumber)
+        {
+           
+            using (SqlConnection con = new SqlConnection(SqlConn))
+            using (SqlCommand com = new SqlCommand())
+            {
+                com.Connection = con;
+                com.CommandText = "select FirstName from Student where IndexNumber=@index";
+                com.Parameters.AddWithValue("index", indexNumber);
+                con.Open();
+                SqlDataReader dr = com.ExecuteReader();
+                if (dr.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+
+            }
         }
     }
 }
