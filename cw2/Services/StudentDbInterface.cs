@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace cw2.Models
 {
-    interface StudentDbInterface
+   public interface StudentDbInterface
     {
         List<Student> getStudentsFromDb();
         Semester getSemester(string id);

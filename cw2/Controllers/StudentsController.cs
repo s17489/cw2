@@ -12,7 +12,7 @@ namespace cw2.Controllers
     [ApiController]
     // jeśli pod ten adres wysylane jest rzadanie to przekaz je co studentsC
     [Route("api/students")]
-
+   
     //adnotacja
     public class StudentsController : ControllerBase
     {

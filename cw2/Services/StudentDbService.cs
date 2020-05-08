@@ -7,7 +7,7 @@ namespace cw2.Models
 {
     public class StudentDbService : StudentDbInterface
     {
-        private string SqlConn = " Data Source=db-mssql;Initial Catalog=s17489;Integrated Security=True";
+        private string SqlConn = "Data Source=db-mssql;Initial Catalog=s17489;Integrated Security=True";
 
         public List<Student> getStudentsFromDb()
         {
@@ -26,7 +26,7 @@ namespace cw2.Models
                     st.LastName = dr["LastName"].ToString();
                     st.IndexNumber = dr["IndexNumber"].ToString();
                     st.BirthDate = dr["BirthDate"].ToString();
-                    st.IdEnrollment = (int)dr["IdEnrollment"];
+                   // st.IdEnrollment = (int)dr["IdEnrollment"];
                     StudentsList.Add(st);
 
                 }
