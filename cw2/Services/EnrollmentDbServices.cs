@@ -45,7 +45,7 @@ namespace cw2.Services
                     dr.Dispose();
                     throw new ArgumentException("Studies not found");
                 }
-                int idStudy = (int)dr["IdStudy"]; // needed for 3.
+                int idStudy = (int)dr["IdStudy"]; 
                 dr.Close();
 
 
@@ -131,16 +131,18 @@ namespace cw2.Services
                 var transaction = con.BeginTransaction();
                 com.Connection = con;
                 com.Transaction = transaction;
-                com.CommandText = "select e.IdEnrollment from dbo.Enrollment e inner join dbo.Studies s on e.IdStudy = s.IdStudy where s.Name = @studyName and e.Semester = @semesterNumber";
-                com.Parameters.AddWithValue("@semester", req.Semester);
-                com.Parameters.AddWithValue("@studies", req.Studies);
+                com.CommandText = "select e.IdEnrollment from Enrollment e inner join dbo.Studies s on e.IdStudy = s.IdStudy where s.Name = @studyName and e.Semester = @semesterNumber";
+                com.Parameters.AddWithValue("studyName", req.Studies);
+                com.Parameters.AddWithValue("semesterNumber", req.Semester);
 
                 var dr = com.ExecuteReader();
 
                 if (!dr.Read())
                 {
                     dr.Close();
-                    return null;
+
+                    transaction.Rollback();
+
                 }
                 else
                 {
@@ -148,7 +150,7 @@ namespace cw2.Services
                     using (SqlConnection conn = new SqlConnection(SqlConn))
                     {
                         conn.Open();
-                        SqlCommand cmd = new SqlCommand("Promote", conn);
+                        SqlCommand cmd = new SqlCommand("PromoteRequest", conn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add(new SqlParameter("@studies", req.Studies));
                         cmd.Parameters.Add(new SqlParameter("@semester", req.Semester));
