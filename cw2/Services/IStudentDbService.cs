@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 
 namespace cw2.Models
 {
-   public interface IStudentDbInterface
+   public interface IStudentDbService
     {
         List<Student> getStudentsFromDb();
         Semester getSemester(string id);
-
         bool trueStudent(string indexNumber);
     }
 }

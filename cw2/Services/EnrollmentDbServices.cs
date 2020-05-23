@@ -118,6 +118,33 @@ namespace cw2.Services
             return resp;
         }
 
+        public Student GetStudentPassword(string index)
+        {
+            var student = new Student();
+
+            using (var connection = new SqlConnection(SqlConn))
+            using (var command = new SqlCommand())
+            {
+                command.Connection = connection;
+                command.CommandText = "SELECT * FROM Student WHERE Student.IndexNumber = @index;";
+                command.Parameters.AddWithValue("@index", index);
+
+                connection.Open();
+
+                var dr = command.ExecuteReader();
+
+                if (!dr.Read())
+                {
+                    return null;
+                }
+                student.IndexNumber = dr["IndexNumber"].ToString();
+                student.Password = dr["Password"].ToString();
+               
+            }
+            return student;
+        }
+
+
 
         public PromoteStudentsResponse PromoteStudents(PromoteStudentRequest req)
         {

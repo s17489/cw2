@@ -43,3 +43,22 @@ BODY: {
 }
 QUERY: 
 
+METHOD: GET
+PATH: /
+BODY: 
+QUERY: 
+
+METHOD: GET
+PATH: /favicon.ico
+BODY: 
+QUERY: 
+
+METHOD: GET
+PATH: /api/students
+BODY: 
+{
+"login" : "aaa",
+"password" : "asd"
+}
+QUERY: 
+

@@ -16,6 +16,9 @@ using cw2.Services;
 
 using cw2.Middlewares;
 using cw2.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace cw2
 {
@@ -33,12 +36,26 @@ namespace cw2
         {
             services.AddSingleton<IEnrollmentDbServices, EnrollmentDbServices>();
             services.AddControllers();
-
-           /* services.AddSwaggerGen(config =>
-            {
-                config.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-            });*/
-        }
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+               .AddJwtBearer(options =>
+               {
+                   options.TokenValidationParameters = new TokenValidationParameters
+                   {
+                       ValidateIssuer = true,
+                       ValidateAudience = true,
+                       ValidateLifetime = true,
+                       ValidIssuer = "s17489",
+                       ValidAudience = "employee",
+                       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"]))
+                   };
+               });
+           
+        
+        /* services.AddSwaggerGen(config =>
+         {
+             config.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+         });*/
+    }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -47,12 +64,12 @@ namespace cw2
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseMiddleware<LoggingMiddleware>();
-           /* app.UseSwagger();
+          /*  app.UseMiddleware<LoggingMiddleware>();
+           app.UseSwagger();
             app.UseSwaggerUI(
                 config => {
                     config.SwaggerEndpoint("/swagger/v1/swagger.json", "My API");
-                });*/
+                });
             app.Use(async (context, next) => {
                 if (!context.Request.Headers.ContainsKey("Index"))
                 {
@@ -72,13 +89,15 @@ namespace cw2
                     return;
                 }
                 await next();
-            });
+            });*/
 
             
 
              app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

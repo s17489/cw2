@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
 using cw2.Models;
-
+using Microsoft.Extensions.Configuration;
 
 namespace cw2.Controllers
 {
@@ -16,8 +16,12 @@ namespace cw2.Controllers
     //adnotacja
     public class StudentsController : ControllerBase
     {
-
-        private readonly IStudentDbInterface studentsDB = new StudentDbService();
+        public IConfiguration Configuration { get; set; }
+        public StudentsController(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+        private readonly IStudentDbService studentsDB = new StudentDbService();
 
        
         //Nad metodą dajemy atrybut na jaka metode http bedzie regaowalem ten atrybut 

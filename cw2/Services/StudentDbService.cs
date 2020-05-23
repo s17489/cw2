@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 namespace cw2.Models
 {
-    public class StudentDbService : IStudentDbInterface
+    public class StudentDbService : IStudentDbService
     {
         private string SqlConn = "Data Source=db-mssql;Initial Catalog=s17489;Integrated Security=True";
 
